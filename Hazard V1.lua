@@ -615,12 +615,6 @@ local function HBYTV_fake_script() -- DmaxDaz_Tor1.Main
 				part.Massless = true
 				part.CanCollide = false
 				part.CanTouch = false
-	
-				for _, child in pairs(part:GetChildren()) do
-					if child:IsA("BodyMover") then
-						child:Destroy()
-					end
-				end
 			end
 		end
 	end)
