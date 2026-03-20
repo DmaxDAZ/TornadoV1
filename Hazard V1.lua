@@ -150,7 +150,7 @@ RADIUS.LayoutOrder = 1
 RADIUS.Position = UDim2.new(-0.00409836043, 0, 0.22594142, 0)
 RADIUS.Size = UDim2.new(0, 244, 0, 26)
 RADIUS.Font = Enum.Font.GothamBold
-RADIUS.Text = "Radius: 50"
+RADIUS.Text = "Radius: 45"
 RADIUS.TextColor3 = Color3.fromRGB(150, 150, 150)
 RADIUS.TextSize = 14.000
 
@@ -262,7 +262,7 @@ PullStrength.LayoutOrder = 3
 PullStrength.Position = UDim2.new(0, 0, 0.196652725, 0)
 PullStrength.Size = UDim2.new(0, 244, 0, 26)
 PullStrength.Font = Enum.Font.GothamBold
-PullStrength.Text = "Force: 10000"
+PullStrength.Text = "Force: 100000"
 PullStrength.TextColor3 = Color3.fromRGB(150, 150, 150)
 PullStrength.TextSize = 14.000
 
@@ -546,9 +546,9 @@ local function HBYTV_fake_script() -- DmaxDaz_Tor1.Main
 	
 	-- // Configs
 	local ringEnabled = false
-	local baseOrbitRadius = 50 -- Minimum distance from you
+	local baseOrbitRadius = 45 -- Minimum distance from you
 	local rotSpeed = 6     -- Base speed (will be randomized per part)
-	local pullStrength = 10000   
+	local pullStrength = 100000   
 	local maxSpeed = 300       -- Faster for more "fling" power
 	local regionSize = 500
 	local maxParts = math.huge       
@@ -710,7 +710,7 @@ local function HBYTV_fake_script() -- DmaxDaz_Tor1.Main
 	
 	AddForce.add.MouseButton1Click:Connect(function() 
 		playSound(140039147129195)
-		pullStrength = math.min(100000,pullStrength+1000)
+		pullStrength = math.min(1000000,pullStrength+10000)
 		AddForce.Text = "Force: "..pullStrength
 	end)
 	
