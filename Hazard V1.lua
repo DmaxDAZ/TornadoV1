@@ -1,3 +1,13 @@
+local function playSound(soundId)
+	local sound = Instance.new("Sound")
+	sound.SoundId = "rbxassetid://"..soundId
+	sound.Parent = game:GetService("SoundService")
+	sound.Volume = 2.5
+	sound.PlaybackSpeed = 1.5
+	sound:Play()
+	sound.Ended:Connect(function() sound:Destroy() end)
+end
+
 local player = game:GetService("Players").LocalPlayer
 repeat task.wait() until player and player:FindFirstChild("PlayerGui")
 
@@ -150,7 +160,7 @@ RADIUS.LayoutOrder = 1
 RADIUS.Position = UDim2.new(-0.00409836043, 0, 0.22594142, 0)
 RADIUS.Size = UDim2.new(0, 244, 0, 26)
 RADIUS.Font = Enum.Font.GothamBold
-RADIUS.Text = "Radius: 45"
+RADIUS.Text = "Radius: 50"
 RADIUS.TextColor3 = Color3.fromRGB(150, 150, 150)
 RADIUS.TextSize = 14.000
 
@@ -533,20 +543,9 @@ local function HBYTV_fake_script() -- DmaxDaz_Tor1.Main
         end
     end
 	
-	-- // Functions
-	local function playSound(soundId)
-		local sound = Instance.new("Sound")
-		sound.SoundId = "rbxassetid://"..soundId
-		sound.Parent = game:GetService("SoundService")
-		sound.Volume = 2.5
-		sound.PlaybackSpeed = 1.5
-		sound:Play()
-		sound.Ended:Connect(function() sound:Destroy() end)
-	end
-	
 	-- // Configs
 	local ringEnabled = false
-	local baseOrbitRadius = 45 -- Minimum distance from you
+	local baseOrbitRadius = 50 -- Minimum distance from you
 	local rotSpeed = 6     -- Base speed (will be randomized per part)
 	local pullStrength = 100000   
 	local maxSpeed = 300       -- Faster for more "fling" power
@@ -635,7 +634,7 @@ local function HBYTV_fake_script() -- DmaxDaz_Tor1.Main
 	
 		for i, part in ipairs(pool) do
 			local data = partData[part]
-			if part.Parent and not part.Anchored and not part:FindFirstChildWhichIsA("Constraint") and data then
+			if part.Parent and not part.Anchored and data then
 	
 				-- CALCULATE HAZARD ORBIT
 				-- Every part gets a slightly different speed and radius
@@ -659,7 +658,7 @@ local function HBYTV_fake_script() -- DmaxDaz_Tor1.Main
 				part.Velocity = vel + Vector3.new(0, workspace.Gravity * dt, 0)
 	
 				-- Violent spinning on the part itself
-				part.RotVelocity = Vector3.new(math.random(-30,30), 30, math.random(-30,30)) 
+				part.RotVelocity = Vector3.new(math.random(-10,10), 10, math.random(-10,10)) 
 			end
 		end
 	end)
@@ -788,6 +787,7 @@ local function BSVL_fake_script() -- TextButton.LocalScript
 	local script = Instance.new('LocalScript', TextButton)
 
 	script.Parent.MouseButton1Click:Connect(function() 
+		playSound(140039147129195)
 		script.Parent.Parent:WaitForChild("DmaxDaz_Tor1").Visible = not script.Parent.Parent:WaitForChild("DmaxDaz_Tor1").Visible
 	end)
 end
